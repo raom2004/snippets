@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: write-region
+# key: wr
+# --
+;; (write-region \"string\" nil \"file\" append:nil visit:nil lockname:nil check-preexistent-file:t)
+(write-region \"${1:string}\" nil \"${2:file}\" nil nil nil t)

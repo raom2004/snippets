@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# key: replace
+# name: replace-regexp-in-string
+# --
+(replace-regexp-in-string \"${1:REGEXP}\" \"${2:REPLACE}\" \"${3:STRING}\")

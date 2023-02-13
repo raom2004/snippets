@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: sed
+# key: sed
+# --
+sed -e ':a;N;$!ba;s/$0//g'

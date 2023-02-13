@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: with-temp-buffer
+# key: with-temp-buffer
+# --
+(let ((lines (with-temp-buffer
+               (insert-file-contents "$0")
+               (buffer-string))))
+(print lines))

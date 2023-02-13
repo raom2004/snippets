@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: wget
+# key: wget
+# --
+wget \"${1:/url-or-tar-file/}\" -P \"${2:/<destiny folder>/}\"

@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: awk_delimiter
-# key: awkf
-# --
-awk -F'$1' '/$2/{print \$0}'
