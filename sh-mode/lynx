@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: lynx
+# key: lynx
+# --
+lynx -dump --display_charset=utf-8

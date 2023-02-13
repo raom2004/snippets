@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: local-variables_org
+# key: local-variables
+# --
+# Local Variables:
+# ispell-check-comments: exclusive
+# ispell-local-dictionary: "deutsch"
+# python-indent-offset: 4
+# End:

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: header-args-PROPERTIES
+# key: :header-args
+# --
+:PROPERTIES:
+:header-args:bash:    :tangle ${1:/tmp/example.txt} 
+:END:
