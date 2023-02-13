@@ -1,0 +1,128 @@
+# -*- mode: snippet -*-
+# name: annotated_bibliography_header_#ann
+# key: #ann
+# --
+
+#+startup: showeverything entitiesplane nohideblocks inlineimages logdone
+#+todo: TODO(t) IN-PROGRESS(i) | DONE(d)
+#+LATEX_CLASS_OPTIONS: [12pt]
+#+LATEX_HEADER: \usepackage[backend=bibtex,natbib=true]{biblatex} \DeclareFieldFormat{apacase}{#1} \addbibresource{${1:`(file-name-sans-extension (buffer-file-name))`.bib}}
+#+LATEX_HEADER: \usepackage{parskip}
+#+OPTIONS: <:nil c:nil todo:nil H:5
+#+latex_compiler: xelatex
+#+latex_header: \usepackage{fontspec}
+#+latex_header_extra: \setmainfont{Segoe UI}
+#+date: `(format-time-string "<%F %a>")`
+#+author: `(format "%s" user-full-name)`
+#+language: en
+#+select_tags: export
+#+exclude_tags: noexport
+#+creator: `(format "Emacs %s (Org mode %s)" (caddr (split-string (emacs-version)))(org-version))`
+# template-version: 1.00
+
+* Annotated Bibliography
+:PROPERTIES: 
+:header-args: :exports none :tangle $1
+:END:
+
+** source code                                          :noexport:
+# insert "#ann2"
+E-UTILITIES REFERENCE MANUAL: [[/run/media/angel/KN28/emacshome/documents/reference/bioinformatics/NCBI-E-utilities/NBK25501-E-utilities-help.pdf][NBK25501-E-utilities-help.pdf]]
+
+Indexed Fields
+
+#+begin_src bash :results verbatim silent
+set -xe
+cd ~/edirect
+
+./einfo -db pubmed -fields
+#+end_src
+
+Query Checker
+
+#+header: :var query="Manuela Schmidt [AUTH]"
+#+begin_src bash :results verbatim silent
+# set -xe
+cd ~/edirect
+
+./esearch -db pubmed -query "$query"
+#+end_src
+
+ORG LATEX ANNOTATED BIBLIOGRAPHY GENERATOR$0
+#+header: :var query="Manuela Schmidt [AUTH]"
+#+header: :var myfolder=\"${2:`(condition-case nil
+(file-name-directory buffer-file-name)
+(error (print "/tmp/")))`}\"
+#+header: :var file_prefix=\"${3:example}\"
+#+header: :tangle /tmp/$3.sh
+#+begin_src bash :results verbatim :wrap src org :shebang #!/bin/bash
+set -xe
+cd ~/edirect
+
+## variable declaration
+
+xml_file=$myfolder$file_prefix-\`date '+%H_%M_%S'\`.xml
+# rm -rf $myfolder$file_prefix*.xml
+# definitive_file=$myfolder$file_prefix-`date '+%H_%M_%S'`.txt
+
+# download info in xml format
+
+old_xml=$(ls -la $myfolder$file_prefix*.xml | tail -n 1 | awk ' { printf \$9 } ')
+
+if [ -f "$old_xml" ];then
+    # if xml file exist, use it 
+    xml_file="$old_xml"
+fi
+
+./esearch -db pubmed -query "$query" | \
+./efetch -format xml > "$xml_file"
+
+printf "** $query [/]\n\n"
+
+./xtract -input "$xml_file" -pattern PubmedArticle \
+	 -def " " -VAR1 MedlinePgn \
+          -tab "|" -element AbstractText \
+	 -block Author -position first -sep "" -tab "|" \
+	  -element LastName \
+	 -block Author -position first -sep " " -tab "|. and " \
+	  -element Initials \
+	 -block Author -position inner -sep ", " -tab ". and " \
+	  -element LastName,Initials \
+	 -block Author -position last -sep ", " -tab ".|" \
+	  -element LastName,Initials \
+	 -block ArticleTitle \
+	  -tab "|" -element ArticleTitle \
+	 -block ISOAbbreviation -tab "|" -element ISOAbbreviation \
+	 -block PubMedPubDate -if @PubStatus -equals "pubmed" \
+	  -tab "|" -element Year \
+	 -block Volume -sep "|" -tab "|" -element Volume "&VAR1" \
+	 -block ArticleId -if ArticleId@IdType -equals doi \
+	  -tab "|" -element ArticleId \
+	 -block MedlineCitation -element MedlineCitation/PMID | \
+awk -F'|' ' { gsub(" ", "",\$9); printf "*** %s citep:%s%s. pmid:%s. doi:%s. :noexport:\
+\n\
+,#+begin_src bibtex :tangle no\n\
+@article{%s%s,\n\
+author = {%s, %s%s},\n\
+title = {{%s}},\n\
+journal = {{%s}},\n\
+year = {%s},\n\
+volume = {%s},\n\
+pages = {%s},\n\
+doi = {%s}\n\
+}\n\
+,#+end_src\n\
+\n\
+# Annotation relevancy:\n\
+# [Abstract] %s\n\
+[Summary] \n\
+[Evaluation] \n\
+[Applicability] \n\n\
+", \$5, \$2,\$7, \$11,\$10,  \$2,\$7,\$2,\$3,\$4,\$5,\$6,\$7,\$8,\$9,\$10,\$1 }' 
+#+end_src
+
+* References
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
+#+LaTeX: \printbibliography[heading=none]
