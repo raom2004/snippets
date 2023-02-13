@@ -1,0 +1,28 @@
+# -*- mode: snippet -*-
+# name: org_bash_babel_block_#aur
+# key: #aur
+# --
+#+begin_src bash :session aur-session :results verbatim silent
+# declare variables
+url=\"${1:url}\"
+FILE=$(basename -- \"${url}\")
+
+# set working directory
+cd /tmp
+
+# download data
+if cat \"${url}\" | grep -q '.git'; then
+  git clone \"${url}\"
+  cd \"\${FILE%.git}\"
+else
+  curl -L -O \"${url}\"
+  tar -xvf $FILE
+  cd \"\${FILE%.tar.gz}\"
+fi
+
+# less PGKBUILD (check PGKBUILD, optional)
+# make package
+makepkg -si
+
+
+#+end_src
