@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# name: tangle__org-babel-tangle
+# key: tangle
+# --
+
+#+begin_src emacs-lisp
+;; return cursor to this point after execute this org babel block
+(save-excursion
+  ;; set universal argument to '4
+  (let* ((current-prefix-arg '(4)))
+    ;; go to specific org babel block
+    (org-babel-goto-named-src-block "$1")
+    ;; tangle org babel block at point
+    (org-babel-tangle current-prefix-arg)
+    ;; go to specific org babel block
+    (org-babel-goto-named-src-block "$0")
+    ;; run code
+    (org-ctrl-c-ctrl-c)
+    ) ; end let
+  ) ; end save-excursion
+#+end_src

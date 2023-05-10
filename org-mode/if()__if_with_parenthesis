@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: if()__if_with_parenthesis
+# key: if()
+# --
+if (( "${$0}" )); then
+`(org-cycle)`
+fi`(org-cycle)`

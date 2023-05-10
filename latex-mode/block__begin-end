@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
-# name: begin-end
-# key: begin-end
+# name: block__begin-end
+# key: block
 # --
 \\begin\{${1:center}\}
 $0

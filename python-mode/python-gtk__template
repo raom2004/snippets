@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: python_gtk_example
+# name: python-gtk__template
 # key: python-gtk
 # --
 import gi

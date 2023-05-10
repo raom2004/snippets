@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: #hv__#+header_var
+# key: #hv
+# --
+#+header: :var $0

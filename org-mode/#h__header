@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: #h__#+header
+# key: #h
+# --
+#+header: $0

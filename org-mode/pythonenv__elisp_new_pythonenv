@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: pythonenv__elisp_new_pythonenv
+# key: pythonenv
+# --
+#+begin_src emacs-lisp
+  ;;;~ create a python environment '$1' if it not exists
+(when (or (not (venv-get-candidates))
+	  (not (member \"$1\" (venv-get-candidates))))
+  (venv-mkvirtualenv \"$1\")
+  ;;;~ include python packages required for emacs : "epc jedi pytz"
+  ;;;~ include python packages required for $1 : \"$2\"
+  (venv-with-virtualenv-shell-command
+   \"$1\" \"pip install epc jedi pytz $2\")
+  (venv-work \"$1\")
+  )
+#+end_src

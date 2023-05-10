@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: #hsb__#+header_shebang
+# key: #hsb
+# --
+#+header: :shebang $0#!/bin/bash

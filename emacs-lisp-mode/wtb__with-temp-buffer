@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
-# name: with-temp-buffer
-# key: with-temp-buffer
+# name: wtb__with-temp-buffer
+# key: wtb
 # --
 (let ((lines (with-temp-buffer
                (insert-file-contents "$0")

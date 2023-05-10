@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: printf__printf
+# key: printf
+# --
+printf "%s\n" "\${$0}"

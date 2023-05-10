@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: org_header_complete
+# name: #sta__org-header-complete
 # key: #sta
 # --
 #+startup: showeverything entitiesplane nohideblocks inlineimages logdone

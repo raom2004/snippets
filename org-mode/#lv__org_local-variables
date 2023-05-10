@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
-# name: local-variables_org
-# key: local-variables
+# name: #lv__org_local-variables
+# key: #lv
 # --
 # Local Variables:
 # ispell-check-comments: exclusive

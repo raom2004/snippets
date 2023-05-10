@@ -1,0 +1,63 @@
+* Description
+Snippets for Emacs/Yasnippets
+
+
+* making the snippets maintainable
+
+The snippets template has two values, a =name= and a =key=, like this:
+
+#+begin_example sh
+## -*- mode: snippet -*-
+# name:
+# key: 
+# --
+#+end_example
+
+So, each snippet must have a descriptive =name= and a =key= value, like in this example:
+
+#+begin_example sh
+## -*- mode: snippet -*-
+# name: shebang 
+# key: :sd
+# --
+#+header: :shebang
+#+end_example
+
+After create a snippet, we can locate it easily using the =yasnippet menu=, which display a list showing the values of =name= and =key=. However, at the time of editing this snippet, the function =yas-visit-snippet-file= will only shows the value =name=, making difficult to locate a snippet triggered by specific =key=. This situation makes the maintainment of snippets challenging, specially when the snippets become really numerous.
+
+For the exposed above, will be a good idea to have a naming convention to make our snippets more maintainable.
+
+* snippet naming
+
+As far as I know, there is no standard convention for snippets naming, but I think that include the value of =key= in the snippets =name=, could be a good idea.
+
+What I propose here is to name the snippets by a =key=, a =__= as a spacer, and a short reference name to describe our snippet.
+
+For example, a snippet called by the key =:sb= and the reference name =:shebang=, should be named like this:
+
+#+begin_example sh
+## -*- mode: snippet -*-
+# name: :sd__:shebang 
+# key: :sd
+# --
+#+header: :shebang
+#+end_example
+
+This way, whe we run the function =yas-visit-snippet-file=, the nale listed will be:
+
+#+begin_example sh
+:sd__:shebang
+#+end_example
+
+In such case, will be easy to find and edit the snippet triggered by the key =:sb=.
+
+
+Other examples:
+
+A key =#h= with a reference name =#+header:=, will be named like:
+
+#+begin_example sh
+#h__#+header:
+#+end_example
+
+Important: notice that the snippets are unique and only share the spacer =__=.
