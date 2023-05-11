@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: $__braquets
+# key: $
+# --
+\${$0}

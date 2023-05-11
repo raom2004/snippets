@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: readlines__while_read_lines_in_file
+# key: readlines
+# --
+while IFS="" read -r p || [[ -n "\${p}" ]]
+do
+  printf '%s\n' "\${p}"`(org-cycle)`
+done < $0

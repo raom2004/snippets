@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: $__square_brackets
+# key: $
+# --
+\${$0}

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: readfile__while_read_file
+# key: readfile
+# --
+readarray -t array < $0
