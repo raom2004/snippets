@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: sudo__#+header_dir_sudo
-# key: sudo
-# --
-#+header: :dir /sudo::

@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: null__dev_null
-# key: null
-# --
-&> /dev/null

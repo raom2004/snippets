@@ -2,7 +2,7 @@
 Snippets for Emacs/Yasnippets
 
 
-* making the snippets maintainable
+* Making the snippets maintainable
 
 The snippets template has two values, a =name= and a =key=, like this:
 
@@ -27,7 +27,7 @@ After create a snippet, we can locate it easily using the =yasnippet menu=, whic
 
 For the exposed above, will be a good idea to have a naming convention to make our snippets more maintainable.
 
-* snippet naming
+* Snippet Naming
 
 As far as I know, there is no standard convention for snippets naming, but I think that include the value of =key= in the snippets =name=, could be a good idea.
 
@@ -61,3 +61,38 @@ A key =#h= with a reference name =#+header:=, will be named like:
 #+end_example
 
 Important: notice that the snippets are unique and only share the spacer =__=.
+
+# * Character key conventions for snippeds
+
+# In Emacs is frequent to use =Tab= to indent code lines, practice which can accidentally trigger a snipped, specially if the =key= of a snipped is just a string.
+
+# To avoid such a problem here will be used a prefix symbol followed by characters or strings, e.g. =#h=, , as a convention that can reduce the posibilities to trigger a snipped during line indentation with =Tab=.
+
+# This table recopilate the characters used as prefix for each emacs mode:
+
+# | mode  | prefix |
+# |-------+--------|
+# | org   | #      |
+# | shell | <      |
+
+* Programmatically rename all files in the folder snippeds
+
+This bash script can rename all snippet files using the value of =name=:
+
+#+begin_src bash :results verbatim
+#
+### CODE
+for folder in ~/*/snippets/*; do
+  if [[ -d "${folder}" ]]; then
+    cd "${folder}"
+    for file in *; do
+      file_newname=$(awk '/# name/{printf $3}' "${file}")
+      if [[ ! "$file" == "$file_newname" ]]; then
+	echo "mv $file $file_newname"
+	mv "${file}" "${file_newname}"
+      fi
+    done
+  fi
+done
+#+end_src
+

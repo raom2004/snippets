@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: awkSLASH__awk
-# key: awk/
-# --
-awk '/$0/{print \$0}'
