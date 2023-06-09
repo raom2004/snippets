@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: #n__#+name
+# key: #n
+# --
+#+name: $0

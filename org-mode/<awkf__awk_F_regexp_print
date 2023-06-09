@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: <awkf__awk_F_regexp_print
+# key: <awkf
+# --
+awk -F\'$1\' \'/$0/{print \$0}\'

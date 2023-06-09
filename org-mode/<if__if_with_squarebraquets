@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: <if__if_with_squarebraquets
+# key: <if
+# --
+if [[ $0 ]]; then
+`(org-cycle)`
+fi`(org-cycle)`
